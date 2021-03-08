@@ -8,6 +8,7 @@
   export let text: string
   export let loadingWallet: string | undefined
   export let currentlySelected: boolean = false
+  export let termsAgreed: boolean = false
 </script>
 
 <style>
@@ -23,10 +24,16 @@
     padding: 0.625em 1.25em;
     transition: box-shadow 150ms ease-in-out, background 200ms ease-in-out;
     border-radius: 40px;
-    cursor: pointer;
+    cursor: inherit;
     color: inherit;
     line-height: 1.15;
     font-family: inherit;
+    filter: grayscale(1);
+  }
+
+  button.terms-agreed {
+    cursor: pointer;
+    filter: grayscale(0);
   }
 
   button:hover {
@@ -85,10 +92,12 @@
 </style>
 
 <button
+  disabled={!termsAgreed}
   on:click={onclick}
   class="bn-onboard-custom bn-onboard-icon-button"
   class:bn-onboard-dark-mode-background-hover={$app.darkMode}
-  class:bn-onboard-selected-wallet={currentlySelected}>
+  class:bn-onboard-selected-wallet={currentlySelected}
+  class:terms-agreed={termsAgreed}>
   <div>
     {#if loadingWallet === text}
       <Spinner />

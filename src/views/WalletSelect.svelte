@@ -57,6 +57,10 @@
   let showingAllWalletModules = false
   const showAllWallets = () => (showingAllWalletModules = true)
 
+  let termsAgreed = localStorage.getItem("walletTermsAgreed") == "true" ? true : false;
+  const termsUrl = "https://www.hashtag-protocol.org/docs/terms-and-conditions.pdf";
+  const privacyUrl = "https://www.hashtag-protocol.org/docs/privacy-policy.pdf";
+
   function lockScroll() {
     window.scrollTo(0, 0)
   }
@@ -222,6 +226,14 @@
       return false;
     }
   }
+
+  function termsAgreedChange() {
+    if (termsAgreed) {
+      localStorage.setItem("walletTermsAgreed", "true");
+    } else {
+      localStorage.removeItem("walletTermsAgreed");
+    }
+  }
 </script>
 
 <style>
@@ -257,7 +269,15 @@
       <p class="bn-onboard-custom bn-onboard-select-description">
         {@html modalData.description}
       </p>
+      <p>
+        <label class="b-checkbox checkbox">
+          <input type="checkbox" bind:checked={termsAgreed} on:change={termsAgreedChange}>
+          <span class="check"></span>
+          <span class="control-label">I agree to the <a href={termsUrl} target="_blank">Terms & Conditions</a> and <a href={privacyUrl} target="_blank">Privacy Policy</a>.</span>
+        </label>
+      </p>
       <Wallets
+        {termsAgreed}
         {modalData}
         {handleWalletSelect}
         {loadingWallet}

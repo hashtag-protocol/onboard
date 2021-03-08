@@ -13,6 +13,8 @@
   export let loadingWallet: string | undefined
   export let showingAllWalletModules: boolean = false
   export let showAllWallets: () => void
+  export let termsAgreed: boolean = false
+
   let selectedWallet: WritableStore
 
   const unsubscribe = wallet.subscribe(wallet => (selectedWallet = wallet))
@@ -68,6 +70,7 @@
   {#each modalData.primaryWallets as wallet, i (wallet.name)}
     <li>
       <IconButton
+        termsAgreed={termsAgreed}
         onclick={() => handleWalletSelect(wallet)}
         iconSrc={wallet.iconSrc}
         iconSrcSet={wallet.iconSrcSet}
@@ -88,6 +91,7 @@
     {#each modalData.secondaryWallets as wallet, i (wallet.name)}
       <li>
         <IconButton
+          termsAgreed={termsAgreed}
           onclick={() => handleWalletSelect(wallet)}
           iconSrc={wallet.iconSrc}
           iconSrcSet={wallet.iconSrcSet}
