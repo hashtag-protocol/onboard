@@ -218,15 +218,6 @@
     }))
   }
 
-  function clearSelectedWallet() {
-    const key = get(app).selectedWalletKey;
-    if (key && localStorage.getItem(key)) {
-      localStorage.removeItem(key);
-      location.reload();
-      return false;
-    }
-  }
-
   function termsAgreedChange() {
     if (termsAgreed) {
       localStorage.setItem("walletTermsAgreed", "true");
@@ -290,10 +281,7 @@
           What is a wallet?
         </span>
         {#if mobileDevice}
-          <Button onclick={() => {
-            finish({ completed: false })
-            clearSelectedWallet()
-          }}>Dismiss</Button>
+          <Button onclick={() => finish({ completed: false })}>Dismiss</Button>
         {/if}
       </div>
       {#if showWalletDefinition}
