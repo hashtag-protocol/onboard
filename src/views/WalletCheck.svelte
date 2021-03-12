@@ -179,15 +179,6 @@
     }))
   }
 
-  function clearSelectedWallet() {
-    const key = get(app).selectedWalletKey;
-    if (key && localStorage.getItem(key)) {
-      localStorage.removeItem(key);
-      location.reload();
-      return false;
-    }
-  }
-
   function resetState() {
     clearInterval(pollingInterval)
     errorMsg = ''
@@ -364,10 +355,7 @@
       {#if loading}
         <Spinner />
       {/if}
-      <Button position="right" onclick={() => {
-          handleExit(false)
-          clearSelectedWallet()
-        }}>
+      <Button position="right" onclick={() => handleExit(false)}>
         Dismiss
       </Button>
     </div>

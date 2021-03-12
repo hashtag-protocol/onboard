@@ -51,7 +51,6 @@ function init(initialization: Initialization): API {
     apiUrl,
     hideBranding,
     blockPollingInterval = 4000,
-    selectedWalletKey
   } = initialization
 
   const { os, browser, isMobile } = getDeviceInfo()
@@ -93,7 +92,6 @@ function init(initialization: Initialization): API {
     displayBranding,
     checkModules: initializedModules.walletCheck,
     blockPollingInterval,
-    selectedWalletKey
   }))
 
   initializeStores()

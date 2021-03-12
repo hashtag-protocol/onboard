@@ -9,7 +9,6 @@ export interface Initialization {
   apiUrl?: string
   hideBranding?: boolean
   blockPollingInterval?: number
-  selectedWalletKey?: string
 }
 
 export interface Subscriptions {
